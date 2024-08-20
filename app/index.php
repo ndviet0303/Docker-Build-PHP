@@ -9,14 +9,6 @@
 
 <body>
     <h1>ziet cute</h1>
-    <h1>ziet cute</h1>
-    <h1>ziet cute</h1>
-    <h1>ziet cute</h1>
-    <h1>ziet cute</h1>
-    <h1>ziet cute</h1>
-    <h1>ziet cute</h1>
-    <h1>ziet cute</h1>
-    <h1>ziet cute</h1>
 </body>
 
 </html>
