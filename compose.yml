@@ -1,0 +1,56 @@
+services:
+  web:
+    container_name: web_php
+    build: .
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./app:/srv/www
+      - ./php/php.ini:/etc/php/8.3/fpm/php.ini
+    networks:
+      - php-network
+  caddy:
+    container_name: caddy_web
+    image: caddy:latest
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./app:/srv/www
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - php-network
+  mariadb:
+    container_name: mariadb_web
+    image: mariadb:lts
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: ziet123
+      MARIADB_PASSWORD: ziet456
+      MARIADB_USER: ziet
+      MARIADB_DATABASE: laravel
+    volumes:
+      - db:/var/lib/mysql
+    ports:
+      - 3306:3306
+    networks:
+      - php-network
+  redis:
+    container_name: redis_web
+    image: redis:alpine
+    restart: always
+    ports:
+      - 6379:6379
+    networks:
+      - php-network
+networks:
+  php-network:
+    driver: bridge
+volumes:
+  db:
+  caddy_data:
+  caddy_config:
