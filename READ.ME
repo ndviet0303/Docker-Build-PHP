@@ -5,3 +5,5 @@ docker compose cp \
     /tmp/root.crt \
   && sudo security add-trusted-cert -d -r trustRoot \
     -k /Library/Keychains/System.keychain /tmp/root.crt
+
+https://caddyserver.com/docs/running#local-https-with-docker
